@@ -57,7 +57,7 @@ export default function Dashboard() {
   ]
 
   const priorityTasks = tasks
-    .filter(t => !t.completed && (t.priority === 'urgent' || t.priority === 'high'))
+    .filter(t => !t.completed && (t.priority === 'urgente' || t.priority === 'alta'))
     .slice(0, 5)
 
   const recentNotes = notes.slice(0, 3)
@@ -147,7 +147,7 @@ export default function Dashboard() {
                 >
                   <div className={`
                     mt-1 w-3 h-3 rounded-full
-                    ${task.priority === 'urgent' ? 'bg-red-500' : 'bg-orange-500'}
+                    ${task.priority === 'urgente' ? 'bg-red-500' : 'bg-orange-500'}
                   `} />
                   <div className="flex-1">
                     <p className="font-medium text-secondary-900">{task.title}</p>
