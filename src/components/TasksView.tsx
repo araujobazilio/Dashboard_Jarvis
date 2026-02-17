@@ -57,10 +57,9 @@ export default function TasksView() {
       description: newTask.description,
       completed: false,
       priority: newTask.priority,
-      dueDate: newTask.dueDate ? new Date(newTask.dueDate) : undefined,
-      project: newTask.project,
+      dueDate: newTask.dueDate,
       tags: newTask.tags,
-      createdAt: new Date()
+      createdAt: new Date().toISOString()
     })
 
     setNewTask({
