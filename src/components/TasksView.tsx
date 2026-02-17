@@ -65,7 +65,7 @@ export default function TasksView() {
     setNewTask({
       title: '',
       description: '',
-      priority: 'medium',
+      priority: 'media',
       dueDate: '',
       project: '',
       tags: []
