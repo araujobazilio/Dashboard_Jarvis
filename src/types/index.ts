@@ -18,6 +18,7 @@ export interface Task {
   completed: boolean
   priority: 'baixa' | 'media' | 'alta' | 'urgente'
   dueDate?: string
+  project?: string
   category?: string
   tags?: string[]
   createdAt: string
