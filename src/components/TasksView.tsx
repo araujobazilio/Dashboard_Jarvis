@@ -384,9 +384,9 @@ export default function TasksView() {
                         <span>📁 {task.project}</span>
                       </div>
                     )}
-                    {task.tags.length > 0 && (
+                    {(task.tags?.length ?? 0) > 0 && (
                       <div className="flex gap-1">
-                        {task.tags.slice(0, 3).map((tag, i) => (
+                        {task.tags?.slice(0, 3).map((tag, i) => (
                           <span key={i} className="px-2 py-1 bg-secondary-100 rounded">
                             {tag}
                           </span>
