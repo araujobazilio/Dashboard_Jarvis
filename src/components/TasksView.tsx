@@ -100,7 +100,7 @@ export default function TasksView() {
     total: tasks.length,
     completed: tasks.filter(t => t.completed).length,
     pending: tasks.filter(t => !t.completed).length,
-    urgent: tasks.filter(t => !t.completed && t.priority === 'urgent').length,
+    urgent: tasks.filter(t => !t.completed && t.priority === 'urgente').length,
   }
 
   return (
