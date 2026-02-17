@@ -87,8 +87,8 @@ export function useJarvis(): UseJarvisReturn {
         category: analysis.category,
         tags: [analysis.detected_type, analysis.category],
         pinned: false,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
+        createdAt: new Date(),
+        updatedAt: new Date(),
       });
       
       setLastSync(new Date());
