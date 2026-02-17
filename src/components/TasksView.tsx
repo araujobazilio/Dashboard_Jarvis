@@ -348,15 +348,15 @@ export default function TasksView() {
                       {/* Priority Badge */}
                       <span className={`
                         px-2 py-1 text-xs rounded-full font-medium
-                        ${task.priority === 'urgent' ? 'bg-red-100 text-red-600' :
-                          task.priority === 'high' ? 'bg-orange-100 text-orange-600' :
-                          task.priority === 'medium' ? 'bg-yellow-100 text-yellow-600' :
+                        ${task.priority === 'urgente' ? 'bg-red-100 text-red-600' :
+                          task.priority === 'alta' ? 'bg-orange-100 text-orange-600' :
+                          task.priority === 'media' ? 'bg-yellow-100 text-yellow-600' :
                           'bg-green-100 text-green-600'
                         }
                       `}>
-                        {task.priority === 'urgent' ? 'Urgente' :
-                         task.priority === 'high' ? 'Alta' :
-                         task.priority === 'medium' ? 'Média' : 'Baixa'}
+                        {task.priority === 'urgente' ? 'Urgente' :
+                         task.priority === 'alta' ? 'Alta' :
+                         task.priority === 'media' ? 'Média' : 'Baixa'}
                       </span>
 
                       {/* Actions */}
