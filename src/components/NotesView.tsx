@@ -300,9 +300,9 @@ export default function NotesView() {
                 </span>
                 <div className="flex gap-2">
                   <button
-                    onClick={() => updateNote(note.id, { isPinned: !note.isPinned })}
+                    onClick={() => updateNote(note.id, { pinned: !note.pinned })}
                     className={`p-2 rounded hover:bg-secondary-100 ${
-                      note.isPinned ? 'text-primary-500' : 'text-secondary-400'
+                      note.pinned ? 'text-primary-500' : 'text-secondary-400'
                     }`}
                   >
                     <Pin size={16} />
