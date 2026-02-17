@@ -8,6 +8,7 @@ import {
 } from 'lucide-react'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
+import OpenClawIntegration from './OpenClawIntegration'
 
 export default function Dashboard() {
   const { notes, tasks, projects, goals, habits } = useStore()
@@ -71,8 +72,12 @@ export default function Dashboard() {
         </p>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* Main Grid with Jarvis AI */}
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {/* Main Content (3/4) */}
+        <div className="lg:col-span-3 space-y-6">
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {stats.map((stat, index) => {
           const Icon = stat.icon
           return (
@@ -205,49 +210,56 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Habits Today */}
-      {habits.length > 0 && (
-        <div className="card">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <TrendingUp className="text-green-500" size={20} />
-              <h2 className="text-lg font-semibold">Hábitos de Hoje</h2>
-            </div>
-            <span className="text-sm text-secondary-400">
-              {habitsCompletedToday}/{habits.length} completos
-            </span>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-            {habits.map((habit) => {
-              const isCompletedToday = habit.completedDates.some(d => 
-                new Date(d).toDateString() === today.toDateString()
-              )
-              
-              return (
-                <div 
-                  key={habit.id}
-                  className={`
-                    p-4 rounded-lg border-2 text-center cursor-pointer transition-all
-                    ${isCompletedToday 
-                      ? 'border-green-500 bg-green-50' 
-                      : 'border-secondary-200 hover:border-secondary-300'
-                    }
-                  `}
-                >
-                  <div className="text-2xl mb-1">{habit.icon}</div>
-                  <p className="text-xs font-medium text-secondary-700">{habit.name}</p>
-                  {habit.streak > 0 && (
-                    <p className="text-xs text-orange-500 mt-1">
-                      🔥 {habit.streak} dias
-                    </p>
-                  )}
+          {/* Habits Today */}
+          {habits.length > 0 && (
+            <div className="card">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <TrendingUp className="text-green-500" size={20} />
+                  <h2 className="text-lg font-semibold">Hábitos de Hoje</h2>
                 </div>
-              )
-            })}
-          </div>
+                <span className="text-sm text-secondary-400">
+                  {habitsCompletedToday}/{habits.length} completos
+                </span>
+              </div>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {habits.map((habit) => {
+                  const isCompletedToday = habit.completedDates.some(d => 
+                    new Date(d).toDateString() === today.toDateString()
+                  )
+                  
+                  return (
+                    <div 
+                      key={habit.id}
+                      className={`
+                        p-4 rounded-lg border-2 text-center cursor-pointer transition-all
+                        ${isCompletedToday 
+                          ? 'border-green-500 bg-green-50' 
+                          : 'border-secondary-200 hover:border-secondary-300'
+                        }
+                      `}
+                    >
+                      <div className="text-2xl mb-1">{habit.icon}</div>
+                      <p className="text-xs font-medium text-secondary-700">{habit.name}</p>
+                      {habit.streak > 0 && (
+                        <p className="text-xs text-orange-500 mt-1">
+                          🔥 {habit.streak} dias
+                        </p>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )}
         </div>
-      )}
+
+        {/* Jarvis AI Sidebar (1/4) */}
+        <div className="space-y-6">
+          <OpenClawIntegration />
+        </div>
+      </div>
     </div>
   )
 }

@@ -7,9 +7,8 @@ export interface Note {
   tags: string[]
   createdAt: Date
   updatedAt: Date
-  category: 'note' | 'idea' | 'task' | 'reference'
-  isPinned: boolean
-  isArchived: boolean
+  category?: string
+  pinned?: boolean
 }
 
 export interface Task {
@@ -17,11 +16,11 @@ export interface Task {
   title: string
   description?: string
   completed: boolean
-  priority: 'low' | 'medium' | 'high' | 'urgent'
-  dueDate?: Date
-  project?: string
-  tags: string[]
-  createdAt: Date
+  priority: 'baixa' | 'media' | 'alta' | 'urgente'
+  dueDate?: string
+  category?: string
+  tags?: string[]
+  createdAt: string
   completedAt?: Date
 }
 
