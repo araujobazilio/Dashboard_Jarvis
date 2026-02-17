@@ -34,7 +34,7 @@ export default function NotesView() {
     const matchesSearch = note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          note.content.toLowerCase().includes(searchQuery.toLowerCase())
     const matchesCategory = selectedCategory === 'all' || note.category === selectedCategory
-    return matchesSearch && matchesCategory && !note.isArchived
+    return matchesSearch && matchesCategory
   })
 
   const handleAddNote = () => {
