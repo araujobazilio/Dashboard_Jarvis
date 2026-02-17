@@ -1,0 +1,13 @@
+node_modules
+.next
+.git
+.gitignore
+*.md
+.env*.local
+.DS_Store
+*.log
+npm-debug.log*
+.vercel
+.idea
+.vscode
+*.tgz

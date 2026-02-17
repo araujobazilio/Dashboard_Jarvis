@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  segundo-cerebro:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: segundo-cerebro
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - segundo-cerebro-network
+
+networks:
+  segundo-cerebro-network:
+    driver: bridge
