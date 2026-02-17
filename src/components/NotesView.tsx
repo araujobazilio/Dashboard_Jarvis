@@ -51,8 +51,7 @@ export default function NotesView() {
       category: newNote.category,
       createdAt: new Date(),
       updatedAt: new Date(),
-      isPinned: false,
-      isArchived: false,
+      pinned: false,
     })
 
     setNewNote({
