@@ -33,8 +33,39 @@ export function useCalendar(): UseCalendarReturn {
       const response = await fetch('/api/calendar');
       const data = await response.json();
       
-      if (data.status === 'success') {
-        setEvents(data.events || []);
+      if (data.status === 'success' && Array.isArray(data.events)) {
+        // Normalizar eventos para garantir que todos os campos existam
+        const normalizedEvents = data.events.map((event: any) => ({
+          id: event.id || 'event-' + Date.now() + Math.random(),
+          summary: event.summary || 'Sem título',
+          description: event.description || '',
+          start: {
+            dateTime: event.start?.dateTime || event.start?.date || new Date().toISOString(),
+          },
+          end: {
+            dateTime: event.end?.dateTime || event.end?.date || new Date(Date.now() + 3600000).toISOString(),
+          },
+          location: event.location || '',
+          colorId: event.colorId || '1',
+        }));
+        
+        setEvents(normalizedEvents);
+      } else if (data.demo) {
+        // Se for modo demo, usar os mock events retornados
+        const normalizedEvents = (data.events || []).map((event: any) => ({
+          id: event.id || 'demo-' + Date.now(),
+          summary: event.summary || 'Sem título',
+          description: event.description || '',
+          start: {
+            dateTime: event.start?.dateTime || event.start?.date || new Date().toISOString(),
+          },
+          end: {
+            dateTime: event.end?.dateTime || event.end?.date || new Date(Date.now() + 3600000).toISOString(),
+          },
+          location: event.location || '',
+          colorId: event.colorId || '1',
+        }));
+        setEvents(normalizedEvents);
       } else {
         setError(data.message || 'Erro ao carregar eventos');
       }
@@ -58,7 +89,7 @@ export function useCalendar(): UseCalendarReturn {
       const data = await response.json();
       
       if (data.status === 'success') {
-        await fetchEvents(); // Recarrega lista
+        await fetchEvents();
       } else {
         setError(data.message || 'Erro ao criar evento');
       }

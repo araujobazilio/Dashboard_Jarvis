@@ -38,6 +38,16 @@ export default function CalendarWidget({ compact = false }: CalendarWidgetProps)
     return colors[colorId || '1'] || 'bg-blue-500';
   };
 
+  // Função segura para formatar data
+  const formatEventDate = (dateStr: string | undefined): string => {
+    if (!dateStr) return 'Data não definida';
+    try {
+      return format(parseISO(dateStr), 'dd/MM HH:mm', { locale: ptBR });
+    } catch {
+      return 'Data inválida';
+    }
+  };
+
   return (
     <div className={`bg-gradient-to-br from-indigo-900/50 to-purple-900/50 rounded-xl border border-indigo-500/30 ${compact ? 'p-4' : 'p-6'}`}>
       {/* Header */}
@@ -87,7 +97,7 @@ export default function CalendarWidget({ compact = false }: CalendarWidgetProps)
                 <div className="flex items-center gap-4 mt-2 text-xs text-gray-400">
                   <div className="flex items-center gap-1">
                     <Clock className="w-3 h-3" />
-                    <span>{format(parseISO(event.start.dateTime), 'dd/MM HH:mm', { locale: ptBR })}</span>
+                    <span>{formatEventDate(event.start?.dateTime)}</span>
                   </div>
                   {event.location && (
                     <div className="flex items-center gap-1">
