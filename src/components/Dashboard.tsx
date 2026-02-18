@@ -9,6 +9,7 @@ import {
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import OpenClawIntegration from './OpenClawIntegration'
+import CalendarWidget from './CalendarWidget'
 
 export default function Dashboard() {
   const { notes, tasks, projects, goals, habits } = useStore()
@@ -255,9 +256,10 @@ export default function Dashboard() {
           )}
         </div>
 
-        {/* Jarvis AI Sidebar (1/4) */}
-        <div className="space-y-6">
+        {/* Sidebar - Jarvis AI + Calendar (1/4) */}
+        <div className="space-y-6 lg:col-span-1">
           <OpenClawIntegration />
+          <CalendarWidget compact={true} />
         </div>
       </div>
     </div>
