@@ -61,7 +61,7 @@ export async function POST(request: Request) {
     referenceMin, referenceMax, status
   };
   
-  const existingIndex = healthData.lastExams.findIndex(e => e.name === name);
+  const existingIndex = healthData.lastExams.findIndex((e: any) => e.name === name);
   if (existingIndex >= 0) healthData.lastExams[existingIndex] = newExam;
   else healthData.lastExams.unshift(newExam);
   
