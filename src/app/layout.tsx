@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Segundo Cérebro | JarvisNF',
   description: 'Sistema de gerenciamento de conhecimento e produtividade pessoal',
+  icons: {
+    icon: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({
