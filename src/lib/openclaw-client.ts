@@ -36,11 +36,8 @@ class OpenClawClient {
 
   async health(): Promise<boolean> {
     try {
-      const response = await fetch(`${this.config.apiUrl}/health`, {
+      const response = await fetch('/api/openclaw/health', {
         method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${this.config.apiKey}`,
-        },
       });
       return response.ok;
     } catch {
@@ -50,20 +47,16 @@ class OpenClawClient {
 
   async analyze(content: string, type: string = 'capture'): Promise<OpenClawResponse> {
     try {
-      const request: OpenClawRequest = {
-        user_id: this.config.userId,
-        content,
-        type,
-        timestamp: new Date().toISOString(),
-      };
-
-      const response = await fetch(`${this.config.apiUrl}/analyze`, {
+      const response = await fetch('/api/openclaw/capture', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.config.apiKey}`,
         },
-        body: JSON.stringify(request),
+        body: JSON.stringify({
+          content,
+          type,
+          timestamp: new Date().toISOString(),
+        }),
       });
 
       if (!response.ok) {
@@ -82,14 +75,12 @@ class OpenClawClient {
 
   async sync(data: any): Promise<OpenClawResponse> {
     try {
-      const response = await fetch(`${this.config.apiUrl}/sync`, {
+      const response = await fetch('/api/openclaw/health', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.config.apiKey}`,
         },
         body: JSON.stringify({
-          user_id: this.config.userId,
           data,
           timestamp: new Date().toISOString(),
         }),
