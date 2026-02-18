@@ -16,8 +16,8 @@ export default function CalendarWidget({ compact = false }: CalendarWidgetProps)
   const [newEvent, setNewEvent] = useState({
     summary: '',
     description: '',
-    start: '',
-    end: '',
+    start: { dateTime: '' },
+    end: { dateTime: '' },
     location: '',
   });
 
@@ -25,7 +25,7 @@ export default function CalendarWidget({ compact = false }: CalendarWidgetProps)
     e.preventDefault();
     await createEvent(newEvent);
     setShowAddModal(false);
-    setNewEvent({ summary: '', description: '', start: '', end: '', location: '' });
+    setNewEvent({ summary: '', description: '', start: { dateTime: '' }, end: { dateTime: '' }, location: '' });
   };
 
   // Cores dos eventos
@@ -126,15 +126,15 @@ export default function CalendarWidget({ compact = false }: CalendarWidgetProps)
               <div className="grid grid-cols-2 gap-2">
                 <input
                   type="datetime-local"
-                  value={newEvent.start}
-                  onChange={(e) => setNewEvent({ ...newEvent, start: e.target.value })}
+                  value={newEvent.start.dateTime}
+                  onChange={(e) => setNewEvent({ ...newEvent, start: { dateTime: e.target.value } })}
                   className="px-3 py-2 bg-gray-800 rounded-lg text-white text-sm"
                   required
                 />
                 <input
                   type="datetime-local"
-                  value={newEvent.end}
-                  onChange={(e) => setNewEvent({ ...newEvent, end: e.target.value })}
+                  value={newEvent.end.dateTime}
+                  onChange={(e) => setNewEvent({ ...newEvent, end: { dateTime: e.target.value } })}
                   className="px-3 py-2 bg-gray-800 rounded-lg text-white text-sm"
                   required
                 />
